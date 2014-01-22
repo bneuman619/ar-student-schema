@@ -7,6 +7,9 @@ class Student < ActiveRecord::Base
   validates :age, :numericality => { :greater_than => 5 }
   validates :pn_length, :numericality => { :greater_than => 9 }
 
+  has_many :student_teachers, :foreign_key => :student_id
+  has_many :teachers, :through => :student_teachers
+
   def name
     self.first_name + " " + self.last_name
   end
